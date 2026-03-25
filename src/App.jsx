@@ -1,10 +1,9 @@
-
+import Todos from "./Todos";
 function App() { 
 
   return (
     <>
-      <h1>hellow      
-      </h1>
+      <Todos />
     </>
   )
 }
