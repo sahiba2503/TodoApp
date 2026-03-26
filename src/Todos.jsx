@@ -1,5 +1,4 @@
 import {useState} from 'react'
-
 const Todos = () => {
     const [newTodo,setNewTodo]= useState("")
     const [todos,setTodos] = useState([])
@@ -12,7 +11,9 @@ const Todos = () => {
     }
  }
  const handleDelete = (index)=>{ 
-    alert(index,"deleted ");
+    const newTodos = [...todos];
+    newTodos[index].completed = !newTodos[index].completed
+    setTodos(newTodos)
  }
   return (
     <div>
@@ -28,7 +29,8 @@ const Todos = () => {
      <ul>
         {todos.map((todo,index)=>(
             <li key={index}>
-                <span>{todo.text}</span>
+                <span style={{textDecoration:todo.completed ? "line-through" : "none"}} >
+                {todo.text}</span>
                 <button onClick={()=>handleDelete(index)}>Delete</button>
             </li>
         ))}
