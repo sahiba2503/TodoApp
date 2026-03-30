@@ -43,7 +43,7 @@ const Todos = () => {
 }
 
   return (
-    <div>
+    <div style={{border:"2px solid green",width:"50%",background:"green", color:"white",marginLeft:"25%" , marginTop:"5rem"}}>
       <h1>Todo App</h1>
       <form onSubmit={handleSubmit}>
         <input
@@ -52,7 +52,7 @@ const Todos = () => {
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
         />
-        <button type="submit">{editIndex === null ? "Add Todo" : "Update Todo"}</button>
+        <button style={{marginLeft:"1rem",backgroundColor:"white", color:"red"}} type="submit">{editIndex === null ? "Add Todo" : "Update Todo"}</button>
       </form>
 
       <ul>
@@ -61,11 +61,11 @@ const Todos = () => {
             <span style={{ textDecoration: todo.completed ? "line-through" : "none" }}>
               {todo.text}
             </span>
-            <button onClick={() => handleToggle(index)}>
+            <button style={{marginLeft:"1rem",backgroundColor:"yellow", color:"black"}} onClick={() => handleToggle(index)}>
                             {todo.completed ? "Undo" : "Complete"}
             </button>
-            <button onClick={() => handleEdit(index)}>Update</button>
-              <button onClick={() => handleDeleted(index)}>deleted</button>
+            <button style={{marginLeft:"1rem",backgroundColor:"blue", color:"white"}} onClick={() => handleEdit(index) }>Update</button>
+              <button style={{marginLeft:"1rem",backgroundColor:"red", color:"white"}} onClick={() => handleDeleted(index)}>deleted</button>
           </li>
         ))}
       </ul>
