@@ -35,6 +35,12 @@ const Todos = () => {
     setNewTodo(todos[index].text); 
     setEditIndex(index); 
   };
+  
+  function handleDeleted(index) {
+  const updatedTodos = [...todos];
+  updatedTodos.splice(index, 1);
+  setTodos(updatedTodos);
+}
 
   return (
     <div>
@@ -56,9 +62,10 @@ const Todos = () => {
               {todo.text}
             </span>
             <button onClick={() => handleToggle(index)}>
-              {todo.completed ? "Undo" : "Complete"}
+                            {todo.completed ? "Undo" : "Complete"}
             </button>
             <button onClick={() => handleEdit(index)}>Update</button>
+              <button onClick={() => handleDeleted(index)}>deleted</button>
           </li>
         ))}
       </ul>
