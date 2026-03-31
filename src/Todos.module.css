@@ -1,0 +1,13 @@
+.hover:hover{
+  
+    border:2px solid black;
+
+}
+.inputBackColor{
+    height: 2rem;
+   outline-style: none;
+   padding-left: 1rem;
+}
+.list{
+    list-style: none;
+}

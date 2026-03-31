@@ -1,5 +1,7 @@
 
 import { useState } from 'react';
+// import styles from 'Todos.module.css';
+import styles from './Todos.module.css';
 
 const Todos = () => {
   const [newTodo, setNewTodo] = useState("");
@@ -47,25 +49,28 @@ const Todos = () => {
       <h1>Todo App</h1>
       <form onSubmit={handleSubmit}>
         <input
+        className={styles.inputBackColor}
           type="text"
           placeholder="Add new todo"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
         />
-        <button style={{marginLeft:"1rem",backgroundColor:"white", color:"red"}} type="submit">{editIndex === null ? "Add Todo" : "Update Todo"}</button>
+        <button  className={styles.hover} style={{marginLeft:"1rem",backgroundColor:"white", color:"red"}} type="submit">{editIndex === null ? "Add Todo" : "Update Todo"}</button>
       </form>
 
       <ul>
         {todos.map((todo, index) => (
-          <li key={index}>
+          <li key={index}
+          className={styles.list}
+          >
             <span style={{ textDecoration: todo.completed ? "line-through" : "none" }}>
               {todo.text}
             </span>
-            <button style={{marginLeft:"1rem",backgroundColor:"yellow", color:"black"}} onClick={() => handleToggle(index)}>
+            <button  className={styles.hover} style={{marginLeft:"1rem",backgroundColor:"yellow", color:"black"}} onClick={() => handleToggle(index)}>
                             {todo.completed ? "Undo" : "Complete"}
             </button>
-            <button style={{marginLeft:"1rem",backgroundColor:"blue", color:"white"}} onClick={() => handleEdit(index) }>Update</button>
-              <button style={{marginLeft:"1rem",backgroundColor:"red", color:"white"}} onClick={() => handleDeleted(index)}>deleted</button>
+            <button  className={styles.hover} style={{marginLeft:"1rem",backgroundColor:"blue", color:"white"}} onClick={() => handleEdit(index) }>Update</button>
+              <button className={styles.hover} style={{marginLeft:"1rem",backgroundColor:"red", color:"white"}} onClick={() => handleDeleted(index)}>deleted</button>
           </li>
         ))}
       </ul>
