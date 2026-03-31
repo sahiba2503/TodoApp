@@ -11,3 +11,8 @@
 .list{
     list-style: none;
 }
+.listbox{
+    border: 2px solid black;
+    width: 70%;
+   margin-left: 10%;
+}

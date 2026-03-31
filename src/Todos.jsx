@@ -1,11 +1,11 @@
 
 import { useState } from 'react';
-// import styles from 'Todos.module.css';
 import styles from './Todos.module.css';
 
 const Todos = () => {
   const [newTodo, setNewTodo] = useState("");
   const [todos, setTodos] = useState([]);
+  const [completed, setCompleted] = useState([]);
   const [editIndex, setEditIndex] = useState(null); 
 
   const handleSubmit = (e) => {
@@ -26,12 +26,13 @@ const Todos = () => {
 
     setNewTodo("");
   };
-
   const handleToggle = (index) => {
-    const newTodos = [...todos];
-    newTodos[index].completed = !newTodos[index].completed;
-    setTodos(newTodos);
-  };
+  const updatedTodos = [...todos];
+  const movedItem = updatedTodos.splice(index, 1)[0];
+  movedItem.completed = true;
+  setTodos(updatedTodos);
+  setCompleted([...completed, movedItem]);
+};
 
   const handleEdit = (index) => {
     setNewTodo(todos[index].text); 
@@ -43,7 +44,11 @@ const Todos = () => {
   updatedTodos.splice(index, 1);
   setTodos(updatedTodos);
 }
-
+const handleDeleteCompleted = (index) => {
+  const updated = [...completed];
+  updated.splice(index, 1);
+  setCompleted(updated);
+};
   return (
     <div style={{border:"2px solid green",width:"50%",background:"green", color:"white",marginLeft:"25%" , marginTop:"5rem"}}>
       <h1>Todo App</h1>
@@ -58,8 +63,9 @@ const Todos = () => {
         <button  className={styles.hover} style={{marginLeft:"1rem",backgroundColor:"white", color:"red"}} type="submit">{editIndex === null ? "Add Todo" : "Update Todo"}</button>
       </form>
 
-      <ul>
-        {todos.map((todo, index) => (
+      <ul className={styles.listbox}>
+        {
+        todos.map((todo, index) => (
           <li key={index}
           className={styles.list}
           >
@@ -72,7 +78,27 @@ const Todos = () => {
             <button  className={styles.hover} style={{marginLeft:"1rem",backgroundColor:"blue", color:"white"}} onClick={() => handleEdit(index) }>Update</button>
               <button className={styles.hover} style={{marginLeft:"1rem",backgroundColor:"red", color:"white"}} onClick={() => handleDeleted(index)}>deleted</button>
           </li>
-        ))}
+        ))
+        }
+      </ul>
+      <ul className={styles.listbox}>
+          {
+        completed.map((complete, index) => (
+          <li key={index}
+          className={styles.list} >
+             <span>
+              {complete.text}
+            </span>
+            <button 
+    className={styles.hover}
+    style={{ marginLeft:"1rem", backgroundColor:"red", color:"white" }}
+    onClick={() => handleDeleteCompleted(index)}
+  >
+    Delete
+  </button>
+          </li>
+        ))
+        }
       </ul>
     </div>
   );
