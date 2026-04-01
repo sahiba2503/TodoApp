@@ -49,6 +49,14 @@ const handleDeleteCompleted = (index) => {
   updated.splice(index, 1);
   setCompleted(updated);
 };
+
+const moveBackSection = (index) => {
+  const updatedCompleted = [...completed];
+  const movedItem = updatedCompleted.splice(index, 1)[0];
+  movedItem.completed = false;
+  setCompleted(updatedCompleted);
+  setTodos([...todos, movedItem]);
+};
   return (
     <div style={{border:"2px solid green",width:"50%",background:"green", color:"white",marginLeft:"25%" , marginTop:"5rem"}}>
       <h1>Todo App</h1>
@@ -95,6 +103,13 @@ const handleDeleteCompleted = (index) => {
     onClick={() => handleDeleteCompleted(index)}
   >
     Delete
+  </button>
+     <button 
+    className={styles.hover}
+    style={{ marginLeft:"1rem", backgroundColor:"green", color:"white" }}
+    onClick={() => moveBackSection(index)}
+  >
+    moveBack
   </button>
           </li>
         ))
