@@ -16,7 +16,8 @@ const Todos = () => {
     if (editIndex === null) {
      
       setTodos([...todos, { text: newTodo, completed: false }]);
-    } else {
+    } 
+    else {
      
       const updatedTodos = [...todos];
       updatedTodos[editIndex].text = newTodo;
@@ -57,14 +58,15 @@ const moveBackSection = (index) => {
   setCompleted(updatedCompleted);
   setTodos([...todos, movedItem]);
 };
+
   return (
-    <div style={{border:"2px solid green",width:"50%",background:"green", color:"white",marginLeft:"25%" , marginTop:"5rem"}}>
+    <div style={{border:"2px solid black",width:"50%",background:"green", color:"white",marginLeft:"25%" , marginTop:"5rem"}}>
       <h1>Todo App</h1>
       <form onSubmit={handleSubmit}>
         <input
         className={styles.inputBackColor}
           type="text"
-          placeholder="Add new todo"
+          placeholder="Enter task name"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
         />
